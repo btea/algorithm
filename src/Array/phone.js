@@ -1,4 +1,5 @@
 export default (str) => {
+    if (!str) return []
     const key = {
         0: [''],
         1: [''],
@@ -13,23 +14,40 @@ export default (str) => {
     }
     str = str.split('')
     let arr = []
-    for (let i = 0; i < str[i].length; i++) {
+    for (let i = 0; i < str.length; i++) {
         arr.push(key[str[i]])
     }
-    let combination = (one, two) => {
-        let r = []
-        for (let i = 0; i < one.length; i++) {
-            for (let j = 0; j < two.length; j++) {
-                r.push(one[i] + two[j])
+    let combination = (arr) => {
+        if (arr.length <= 1) {
+            return arr
+        } else {
+            let one = arr[0]
+            let two = arr[1]
+            let r = []
+            for (let i = 0; i < one.length; i++) {
+                for (let j = 0; j < two.length; j++) {
+                    r.push(one[i] + two[j])
+                }
             }
+            arr.splice(0, 2, r)
+            return combination(arr)
         }
-        return r
+
+        // let one = arr[0]
+        // let two = arr[1]
+        // if (!two) return arr
+        // let r = []
+        // for (let i = 0; i < one.length; i++) {
+        //     for (let j = 0; j < two.length; j++) {
+        //         r.push(one[i] + two[j])
+        //     }
+        // }
+        // arr.splice(0, 2, r)
+        // if (arr.length === 1) {
+        //     return arr
+        // } else {
+        //     combination(arr)
+        // }
     }
-    for (let i = 0; i < arr.length; i++) {
-        let r = combination(arr[0], arr[1]);
-        arr.splice(0, 2, r)
-        if (arr.length < 2) {
-            return arr[0]
-        }
-    }
+    return combination(arr)[0]
 }
