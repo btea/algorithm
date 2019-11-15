@@ -32,22 +32,6 @@ export default (str) => {
             arr.splice(0, 2, r)
             return combination(arr)
         }
-
-        // let one = arr[0]
-        // let two = arr[1]
-        // if (!two) return arr
-        // let r = []
-        // for (let i = 0; i < one.length; i++) {
-        //     for (let j = 0; j < two.length; j++) {
-        //         r.push(one[i] + two[j])
-        //     }
-        // }
-        // arr.splice(0, 2, r)
-        // if (arr.length === 1) {
-        //     return arr
-        // } else {
-        //     combination(arr)
-        // }
     }
     return combination(arr)[0]
 }
